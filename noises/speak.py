@@ -6,8 +6,8 @@ def init_engine():
     return engine
 
 def say(words):
-    #for word in words:
-    engine.say(words)
+    for word in words.split("MARKER"):
+        engine.say(words)
     engine.runAndWait() #blocks
 
 engine = init_engine()
