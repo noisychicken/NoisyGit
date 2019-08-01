@@ -35,3 +35,16 @@ class Handler:
 
             haha = " ".join(str(x) for x in wordsQueue)
             subprocess.Popen(["python3", "./noises/speak.py", haha])
+
+    def star(self, data, enabled):
+        if enabled:
+            print(json.dumps(data))
+            wordsQueue = []
+            if data["action"] == "created":
+                wordsQueue.append("Hey Chris")
+                wordsQueue.append("Well done. Someone just starred your repo named " + data["repository"]["name"])
+            if data["action"] == "deleted":
+                wordsQueue.append("Oh sorry Chris, They just red the code and decided to unstar it. Sad face")
+
+        haha = " ".join(str(x) for x in wordsQueue)
+        subprocess.Popen(["python3", "./noises/speak.py", haha])
