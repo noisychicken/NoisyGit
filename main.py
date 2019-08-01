@@ -25,5 +25,9 @@ def on_star(data):
 def on_pull_request_review_comment(data):
     handlers.pull_request_review_comment(data, True)
 
+@webhook.hook(event_type="push")
+def on_push(data):
+    handlers.push(data, True)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

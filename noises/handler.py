@@ -10,7 +10,10 @@ class Handler:
 
     def status(self, data, enabled):
         if enabled:
-            print(json.dumps(data))
+            if data["context"] != "continuous-integration/travis-ci/push":
+                # Prevent duplicate announcements.
+                return
+
             author = data["commit"]["commit"]["author"]["name"]
             wordsQueue = []
 
@@ -26,12 +29,6 @@ class Handler:
                 wordsQueue.append("Well done")
                 wordsQueue.append(author)
                 wordsQueue.append("Good jorb. You fixed it. You fixed the build - I hope you learnt your lesson")
-
-            if data["state"] == "pending":
-                wordsQueue.append("Oh look some new code by " + author)
-                wordsQueue.append("I hope you know what you're doing dot dot dot")
-                wordsQueue.append("Oh well I better try and build this shit.")
-                wordsQueue.append("Here goes nothing dot dot dot")
 
             speakWords(wordsQueue)
 
@@ -55,6 +52,20 @@ class Handler:
                 wordsQueue.append(data["comment"]["body"])
 
             speakWords(wordsQueue)
+
+    def push(self, data, enabled):
+        if enabled:
+            print(json.dumps(data))
+            wordsQueue = []
+            wordsQueue.append("new commits were pushed to branch" + data["ref"] )
+            for commit in data["commits"]:
+                wordsQueue.append(commit["message"])
+                wordsQueue.append("By " + commit["author"]["name"])
+
+            wordsQueue.append("Oh well I better try and build this shit.")
+            wordsQueue.append("Here goes nothing dot dot dot")
+            speakWords(wordsQueue)
+
 
 def speakWords(wordsQueue):
     haha = "MARKER".join(str(x) for x in wordsQueue)
