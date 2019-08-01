@@ -1,3 +1,5 @@
+all:
+	pipenv run python main.py
 test:
 	pipenv run python -m unittest discover tests
 fmt:
