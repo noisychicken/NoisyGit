@@ -7,22 +7,23 @@ class Handler:
 
     def status(self, data, enabled):
         if enabled:
-            threader = Threader(args=None)
-
             engine = pyttsx3.init()
             author = data["commit"]["commit"]["author"]["name"]
+            wordsQueue = []
 
             if data["state"] == "failure":
                 message = data["commit"]["commit"]["message"]
 
-                threader.queueWords("Oh deary me")
-                threader.queueWords(author)
-                threader.queueWords("You broke the build - you bastard - with the commit:")
-                threader.queueWords(message)
-                threader.speak()
+                wordsQueue.append("Oh deary me")
+                wordsQueue.append(author)
+                wordsQueue.append("You broke the build - you bastard - with the commit:")
+                wordsQueue.append(message)
 
             if data["state"] == "success":
-                threader.queueWords("Well done")
-                threader.queueWords(author)
-                threader.queueWords("Good jorb. You fixed it. You fixed the build - I hope you learnt your lesson")
-                threader.speak()
+                wordsQueue.append("Well done")
+                wordsQueue.append(author)
+                wordsQueue.append("Good jorb. You fixed it. You fixed the build - I hope you learnt your lesson")
+
+            my_thread = Threader(args=wordsQueue)
+
+
