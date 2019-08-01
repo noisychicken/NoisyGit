@@ -1,5 +1,7 @@
 from noises.threader import Threader
 
+from subprocess import call
+
 
 class Handler:
 
@@ -21,6 +23,6 @@ class Handler:
                 wordsQueue.append(author)
                 wordsQueue.append("Good jorb. You fixed it. You fixed the build - I hope you learnt your lesson")
 
-            my_thread = Threader(args=wordsQueue)
-
+            haha = " ".join(str(x) for x in wordsQueue)
+            call(["python3", "/Users/gareth.jones/noisychicken/NoisyGit/noises/speak.py", haha])
 
