@@ -24,5 +24,5 @@ class Handler:
                 wordsQueue.append("Good jorb. You fixed it. You fixed the build - I hope you learnt your lesson")
 
             haha = " ".join(str(x) for x in wordsQueue)
-            call(["python3", "/Users/gareth.jones/noisychicken/NoisyGit/noises/speak.py", haha])
+            call(["python3", "./noises/speak.py", haha])
 
