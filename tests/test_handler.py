@@ -5,7 +5,6 @@ from noises.handler import Handler
 
 class HandlerTest(unittest.TestCase):
 
-    @unittest.skip("annoyance")
     def test_it_handles_status_failure(self):
         # Given
         handler = Handler()
@@ -13,9 +12,8 @@ class HandlerTest(unittest.TestCase):
             data = json.load(json_file)
 
             # When
-            handler.status(data)
+            handler.status(data, True)
 
-    @unittest.skip("annoyance")
     def test_it_handles_status_success(self):
         # Given
         handler = Handler()
@@ -23,7 +21,7 @@ class HandlerTest(unittest.TestCase):
             data = json.load(json_file)
 
             # When
-            handler.status(data)
+            handler.status(data, True)
 
 
 
