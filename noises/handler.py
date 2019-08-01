@@ -10,6 +10,7 @@ class Handler:
 
     def status(self, data, enabled):
         if enabled:
+            print("Handle status")
             if data["context"] != "continuous-integration/travis-ci/push":
                 # Prevent duplicate announcements.
                 return
@@ -34,6 +35,7 @@ class Handler:
 
     def star(self, data, enabled):
         if enabled:
+            print("Handle star")
             wordsQueue = []
             if data["action"] == "created":
                 wordsQueue.append("Hey Chris!")
@@ -46,6 +48,7 @@ class Handler:
 
     def pull_request_review_comment(self, data, enabled):
         if enabled:
+            print("Handle pull_request_review_comment")
             wordsQueue = []
             if data["action"] == "created":
                 wordsQueue.append("A new comment was added to your pull request by " + data["comment"]["user"]["login"])
@@ -55,7 +58,7 @@ class Handler:
 
     def push(self, data, enabled):
         if enabled:
-            print(json.dumps(data))
+            print("Handle Push")
             wordsQueue = []
             wordsQueue.append("new commits were pushed to branch" + data["ref"] )
             for commit in data["commits"]:
