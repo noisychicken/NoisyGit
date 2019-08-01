@@ -16,11 +16,12 @@ def hello_world():
 
 @webhook.hook(event_type="status")        # Defines a handler for the 'push' event
 def on_status(data):
-    t = Thread(target=handlers.status, args=(data, False))
+    t = Thread(target=localCheck, args=(data))
     t.start()
-    #handlers.status(data, False)
 
 
+def localCheck(data):
+    handlers.status(data, True)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
