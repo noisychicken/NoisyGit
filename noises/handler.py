@@ -1,28 +1,33 @@
 import pyttsx3
 
+from noises.threader import Threader
+
 
 class Handler:
 
     def status(self, data, enabled):
         if enabled:
+            threader = Threader()
+
             engine = pyttsx3.init()
             author = data["commit"]["commit"]["author"]["name"]
 
             if data["state"] == "failure":
                 message = data["commit"]["commit"]["message"]
 
-                engine.say("Oh deary me")
-                engine.say(author)
-                engine.say("You broke the build - you bastard - with the commit:")
-                engine.say(message)
 
-                engine.runAndWait()
-                engine.stop()
+                threader.queueWords("Oh deary me")
+                threader.queueWords(author)
+                threader.queueWords("You broke the build - you bastard - with the commit:")
+                threader.queueWords(message)
+                threader.speak()
 
             if data["state"] == "success":
-                engine.say("Well done")
-                engine.say(author)
-                engine.say("Good jorb. You fixed it. You fixed the build - I hope you learnt your lesson")
+                threader.queueWords("Well done")
+                threader.queueWords(author)
+                threader.queueWords("Good jorb. You fixed it. You fixed the build - I hope you learnt your lesson")
+                threader.speak()
 
-                engine.runAndWait()
-                engine.stop()
+
+
+    def queueWords(self, words):
