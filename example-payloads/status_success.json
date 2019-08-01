@@ -5,7 +5,7 @@
   "target_url": null,
   "context": "default",
   "description": null,
-  "state": "failure",
+  "state": "success",
   "commit": {
     "sha": "6113728f27ae82c7b1a177c8d03f9e96e0adf246",
     "node_id": "MDY6Q29tbWl0MTg2ODUzMDAyOjYxMTM3MjhmMjdhZTgyYzdiMWExNzdjOGQwM2Y5ZTk2ZTBhZGYyNDY=",
