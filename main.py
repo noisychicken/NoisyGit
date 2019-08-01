@@ -16,7 +16,7 @@ def hello_world():
 
 @webhook.hook(event_type="status")        # Defines a handler for the 'push' event
 def on_status(data):
-    t = Thread(target=localCheck, args=(data))
+    t = Thread(target=localCheck, args=data)
     t.start()
 
 
