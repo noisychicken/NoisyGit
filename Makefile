@@ -1,5 +1,5 @@
 all:
-	pipenv run python main.py
+	FLASK_ENV=development pipenv run python main.py
 test:
 	pipenv run python -m unittest discover tests
 fmt:

@@ -3,11 +3,14 @@ from noises.threader import Threader
 from subprocess import call
 import subprocess
 
+import json
+
 
 class Handler:
 
     def status(self, data, enabled):
         if enabled:
+            print(json.dumps(data))
             author = data["commit"]["commit"]["author"]["name"]
             wordsQueue = []
 
