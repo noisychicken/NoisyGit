@@ -32,9 +32,7 @@ class Handler:
                 wordsQueue.append("I hope you know what you're doing dot dot dot")
                 wordsQueue.append("Oh well I better try and build this shit. Hold onto your butts")
 
-
-            haha = " ".join(str(x) for x in wordsQueue)
-            subprocess.Popen(["python3", "./noises/speak.py", haha])
+            speakWords(wordsQueue)
 
     def star(self, data, enabled):
         if enabled:
@@ -46,5 +44,18 @@ class Handler:
             if data["action"] == "deleted":
                 wordsQueue.append("Oh sorry Chris, They just red the code and decided to unstar it. Sad face")
 
-        haha = " ".join(str(x) for x in wordsQueue)
-        subprocess.Popen(["python3", "./noises/speak.py", haha])
+            speakWords(wordsQueue)
+
+    def pull_request_review_comment(self, data, enabled):
+        if enabled:
+            print(json.dumps(data))
+            wordsQueue = []
+            if data["action"] == "created":
+                wordsQueue.append("A new comment was added to your pull request by " + data["comment"]["user"]["login"])
+                wordsQueue.append(data["comment"]["body"])
+
+            speakWords(wordsQueue)
+
+def speakWords(wordsQueue):
+    haha = ". ".join(str(x) for x in wordsQueue)
+    subprocess.Popen(["python3", "./noises/speak.py", haha])
