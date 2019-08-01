@@ -1,7 +1,6 @@
 import unittest
 import json
 from noises.handler import Handler
-from main import main
 
 
 class HandlerTest(unittest.TestCase):
@@ -13,7 +12,7 @@ class HandlerTest(unittest.TestCase):
             data = json.load(json_file)
 
             # When
-            #handler.status(data, True)
+            handler.status(data, True)
 
     def test_it_handles_status_success(self):
         # Given
@@ -22,17 +21,7 @@ class HandlerTest(unittest.TestCase):
             data = json.load(json_file)
 
             # When
-            #handler.status(data, True)
-
-    def test_main(self):
-        # Given
-        with open('./example-payloads/status.json') as json_file:
-            data = json.load(json_file)
-            main.on_status(data)
-
-
-
-
+            handler.status(data, True)
 
 
 if __name__ == '__main__':

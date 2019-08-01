@@ -1,5 +1,3 @@
-import pyttsx3
-
 from noises.threader import Threader
 
 
@@ -7,7 +5,6 @@ class Handler:
 
     def status(self, data, enabled):
         if enabled:
-            engine = pyttsx3.init()
             author = data["commit"]["commit"]["author"]["name"]
             wordsQueue = []
 
