@@ -9,7 +9,7 @@ class Threader(Thread):
         self.tts_engine = pyttsx3.init()
 
     def queueWords(self, words):
-        self.tts_engine.say(self._args)
+        self.tts_engine.say(words)
 
     def speak(self):
         self.tts_engine.runAndWait()
