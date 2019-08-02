@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "21732ec267a7f618208939ec97bce71e1997ecb6ce6e034c7fa711587923d61c"
+            "sha256": "38e3e7f48501cca60803c7773ee59c9c46c6362e436b0833f7fef4a00a3530eb"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,13 @@
         ]
     },
     "default": {
+        "arrow": {
+            "hashes": [
+                "sha256:157dee94b557ffe9a2e13e05669bf48820064cb37d416f547f59baa0d25301d4",
+                "sha256:47f37968afeaefd0ba3fe4d0c70dc830985f9ab11beeb381d4fc0e8f8151d3d6"
+            ],
+            "version": "==0.14.4"
+        },
         "click": {
             "hashes": [
                 "sha256:2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13",
@@ -1229,6 +1236,13 @@
             ],
             "version": "==5.2"
         },
+        "python-dateutil": {
+            "hashes": [
+                "sha256:7e6584c74aeed623791615e26efd690f29817a27c73085b78e4bad02493df2fb",
+                "sha256:c89805f6f4d64db21ed966fda138f8a5ed7a4fdbc1a8ee329ce1b74e3c74da9e"
+            ],
+            "version": "==2.8.0"
+        },
         "pyttsx3": {
             "hashes": [
                 "sha256:e630a37fd7d117ddfd67d2038c8dc8553904832cf2e54b0b7e39dbe571ad0941"
@@ -1250,6 +1264,13 @@
             ],
             "index": "pypi",
             "version": "==1.1.0"
+        },
+        "rq-dashboard": {
+            "hashes": [
+                "sha256:340c3ce187e282017e62a1eac5b9a4a080860d8b37b3bde28893c9cb8fb17d2d"
+            ],
+            "index": "pypi",
+            "version": "==0.5.2"
         },
         "six": {
             "hashes": [
@@ -1556,8 +1577,7 @@
         },
         "pyrsistent": {
             "hashes": [
-                "sha256:34b47fa169d6006b32e99d4b3c4031f155e6e68ebcc107d6454852e8e0ee6533",
-                "sha256:abe1cbbdec5677310244ead733044e74be50ccbb02a77a04ffd12c742f2e002c"
+                "sha256:34b47fa169d6006b32e99d4b3c4031f155e6e68ebcc107d6454852e8e0ee6533"
             ],
             "version": "==0.15.4"
         },
@@ -1566,7 +1586,6 @@
                 "sha256:7e6584c74aeed623791615e26efd690f29817a27c73085b78e4bad02493df2fb",
                 "sha256:c89805f6f4d64db21ed966fda138f8a5ed7a4fdbc1a8ee329ce1b74e3c74da9e"
             ],
-            "markers": "python_version >= '2.7'",
             "version": "==2.8.0"
         },
         "python-jose": {

@@ -2,8 +2,12 @@
 from github_webhook import Webhook
 from flask import Flask
 from noises.handler import Handler
+import rq_dashboard
+
 
 app = Flask(__name__)  # Standard Flask app
+app.config.from_object(rq_dashboard.default_settings)
+app.register_blueprint(rq_dashboard.blueprint, url_prefix="/rq")
 webhook = Webhook(app) # Defines '/postreceive' endpoint
 handlers = Handler()
 
