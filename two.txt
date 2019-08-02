@@ -2,11 +2,11 @@ So;
 
 Um;
 
-So in essence; when a user pushes a piece of work to git, or interacts with github in various ways, we get a notification
-via voice. It informs of of the commit name, who committed it, and wether the commit has broken the build.
+So in essence; when a user pushes a piece of work to git, or interacts with github in various ways, we get a notification via voice.
+It informs of of the commit name, who committed it, and wether the commit has broken the build.
 
 
-We're not entirely sure what benefit this would necessarily bring to Sainsburys, other than annoyance and rage and evny.
+We're not entirely sure what benefit this would necessarily bring to Sainsburys, other than annoyance and rage and envy.
 However if a build fails it might be useful to let teams know without them having to check the pipeline, as well as giving a broader picture of who and how often commits are being made.
 Also go team!
 
