@@ -1,0 +1,12 @@
+Hello and welcome to our presentation.
+
+Our team is called - "talk to git git talk to us."
+
+We worked *very* hard on this and hope you enjoy it.
+
+Some of our features may seem superfluous - please bear with us!
+
+Before we start - a big thanks to all the Chris for organising this hack-day!
+
+
+
