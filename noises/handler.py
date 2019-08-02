@@ -1,7 +1,13 @@
 import subprocess
+import pyttsx3
 
+from redis import Redis
+from rq import Queue
 
 class Handler:
+
+    def __init__(self):
+        self.q = Queue(connection=Redis())
 
     def status(self, data, enabled):
         if enabled:
@@ -11,60 +17,59 @@ class Handler:
                 return
 
             author = data["commit"]["commit"]["author"]["name"]
-            wordsQueue = []
 
             if data["state"] == "failure":
                 message = data["commit"]["commit"]["message"]
 
-                wordsQueue.append("Oh deary me")
-                wordsQueue.append(author)
-                wordsQueue.append("You broke the build - you bastard - with the commit:")
-                wordsQueue.append(message)
+                self.speak_those_words("Oh deary me")
+                self.speak_those_words(author)
+                self.speak_those_words("You broke the build - you bastard - with the commit:")
+                self.speak_those_words(message)
 
             if data["state"] == "success":
-                wordsQueue.append("Well done")
-                wordsQueue.append(author)
-                wordsQueue.append("Good jorb. You fixed it. You fixed the build - I hope you learnt your lesson")
-
-            speakWords(wordsQueue)
+                self.speak_those_words("Well done")
+                self.speak_those_words(author)
+                self.speak_those_words("Good jorb. You fixed it. You fixed the build - I hope you learnt your lesson")
 
     def star(self, data, enabled):
         if enabled:
             print("Handle star")
-            wordsQueue = []
             if data["action"] == "created":
-                wordsQueue.append("Hey Chris!")
-                wordsQueue.append("Well done.")
-                wordsQueue.append("Someone just starred your repo named " + data["repository"]["name"])
+                self.speak_those_words("Hey Chris!")
+                self.speak_those_words("Well done.")
+                self.speak_those_words("Someone just starred your repo named " + data["repository"]["name"])
             if data["action"] == "deleted":
-                wordsQueue.append("Oh sorry Chris, They just red the code and decided to unstar it. Sad face")
-
-            speakWords(wordsQueue)
+                self.speak_those_words("Oh sorry Chris, They just red the code and decided to unstar it. Sad face")
 
     def pull_request_review_comment(self, data, enabled):
         if enabled:
             print("Handle pull_request_review_comment")
-            wordsQueue = []
             if data["action"] == "created":
-                wordsQueue.append("A new comment was added to your pull request by " + data["comment"]["user"]["login"])
-                wordsQueue.append(data["comment"]["body"])
-
-            speakWords(wordsQueue)
+                self.speak_those_words("A new comment was added to your pull request by " + data["comment"]["user"]["login"])
+                self.speak_those_words(data["comment"]["body"])
 
     def push(self, data, enabled):
         if enabled:
             print("Handle Push")
-            wordsQueue = []
-            wordsQueue.append("new commits were pushed to branch" + data["ref"] )
+            self.speak_those_words("new commits were pushed to branch" + data["ref"] )
             for commit in data["commits"]:
-                wordsQueue.append(commit["message"])
-                wordsQueue.append("By " + commit["author"]["name"])
+                self.speak_those_words(commit["message"])
+                self.speak_those_words("By " + commit["author"]["name"])
 
-            wordsQueue.append("Oh well I better try and build this shit.")
-            wordsQueue.append("Here goes nothing dot dot dot")
-            speakWords(wordsQueue)
+            self.speak_those_words("Oh well I better try and build this shit.")
+            self.speak_those_words("Here goes nothing dot dot dot")
+
+    def speak_those_words(self, sentence):
+        self.q.enqueue(text_to_speech, sentence)
 
 
-def speakWords(wordsQueue):
-    haha = "MARKER".join(str(x) for x in wordsQueue)
-    subprocess.Popen(["python3", "./noises/speak.py", haha])
+    def speakWords(self, wordsQueue):
+        for sentence in wordsQueue:
+            self.speak_those_words(sentence)
+
+def text_to_speech(sentence):
+    engine = pyttsx3.init()
+    print(sentence)
+    engine.say(sentence)
+    engine.runAndWait()
+    return True

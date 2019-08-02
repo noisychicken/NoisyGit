@@ -1,0 +1,8 @@
+version: "2.4"
+
+services:
+  redis:
+    ports:
+      - "6379:6379"
+    image: redis:5.0.4
+    command: redis-server
