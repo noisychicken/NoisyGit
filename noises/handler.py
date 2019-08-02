@@ -1,9 +1,4 @@
-from noises.threader import Threader
-
-from subprocess import call
 import subprocess
-
-import json
 
 
 class Handler:
